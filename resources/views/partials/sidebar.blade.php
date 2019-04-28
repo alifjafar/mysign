@@ -20,7 +20,7 @@
                     </div>
                     <div class="float-left info">
                         <h6 class="font-weight-light mt-2 mb-1">{{ strtok($user['name'], " ") }}</h6>
-                        <span>{{ $user['name'] }}</span>
+                        <span>{{ $user['username'] }}</span>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -42,11 +42,11 @@
                     <i class="icon icon-dashboard2 s-18 text-yellow"></i>Dashboard
                 </a>
             </li>
-            <li><a href="#">
+            <li><a href="{{ route('files.index') }}">
                     <i class="icon icon-files-o s-18 text-purple"></i>Files
                 </a>
             </li>
-            <li><a href="#">
+            <li><a href="{{ route('my-request.index') }}">
                     <i class="icon icon-receipt s-18 text-primary"></i>My Request
                 </a>
             </li>
@@ -54,11 +54,13 @@
                     <i class="icon icon-signing s-18 text-red"></i>Sign Request
                 </a>
             </li>
+            @can('admin')
                 <li class="header">
                     <strong>Super Admin</strong>
                 </li>
                 <li><a href="{{ route('users.index') }}"><i
                             class="icon icon-account_circle s-18 text-green"></i>Users</a></li>
+            @endcan
             <li class="header">
                 <strong>Akun</strong>
             </li>

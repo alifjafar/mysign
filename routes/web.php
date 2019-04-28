@@ -24,7 +24,12 @@ Route::get('try', 'SignatureController@setSign');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'panel'], function () {
     Route::get('dashboard', 'DashboardController')->name('dashboard');
-    Route::resource('users', 'UserController');
+    Route::group(['middleware' => ['can:admin']], function () {
+        Route::resource('users', 'UserController');
+    });
+    Route::resource('files', 'FileController');
+    Route::resource('my-request', 'MyRequestController');
+    Route::get('documents/pdf/{id}', 'FileController@getDocument');
     Route::group(['prefix' => 'user/profile'], function () {
         Route::get('/{username}', 'ProfileController@index')->name('profile');
         Route::get('/{username}/change_password', 'ProfileController@editPassword')->name('edit-password');
