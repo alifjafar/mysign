@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ asset('img/icon/icon-notebook.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{  asset('img/icon/icon1.png') }}" type="image/x-icon">
     <title>@yield('title') My Sign</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">

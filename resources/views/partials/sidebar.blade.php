@@ -42,6 +42,18 @@
                     <i class="icon icon-dashboard2 s-18 text-yellow"></i>Dashboard
                 </a>
             </li>
+            <li><a href="#">
+                    <i class="icon icon-files-o s-18 text-purple"></i>Files
+                </a>
+            </li>
+            <li><a href="#">
+                    <i class="icon icon-receipt s-18 text-primary"></i>My Request
+                </a>
+            </li>
+            <li><a href="#">
+                    <i class="icon icon-signing s-18 text-red"></i>Sign Request
+                </a>
+            </li>
                 <li class="header">
                     <strong>Super Admin</strong>
                 </li>
