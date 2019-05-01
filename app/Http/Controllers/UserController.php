@@ -14,10 +14,12 @@ class UserController extends Controller
         $users = User::all();
         return view('dashboard.user.index', compact('users'));
     }
+
     public function create()
     {
         return view('dashboard.user.create');
     }
+
     public function store(Request $request)
     {
         $validated = $this->validate($request, [
@@ -37,6 +39,7 @@ class UserController extends Controller
     {
         return view('dashboard.user.edit', compact('user'));
     }
+
     public function update(Request $request, User $user)
     {
         $validated = $this->validate($request, [
@@ -55,10 +58,28 @@ class UserController extends Controller
         Session::flash('success', 'Berhasil Memperbaharui User');
         return redirect(route('users.index'));
     }
+
     public function destroy(User $user)
     {
         $user->delete();
         Session::flash('success', 'Berhasil Menghapus User');
         return route('users.index');
+    }
+
+    public function ajaxSearch(Request $request)
+    {
+        $keyword = $request->get('q');
+        $users = User::where('id', '<>', auth()->user()->id)
+            ->where(function ($q) use ($keyword) {
+                $q->where(function ($q) use ($keyword) {
+                    $q->where('name', 'like', "%$keyword%");
+                })->orWhere('email', 'like', "%$keyword%")
+                    ->orWhere('username', 'like', "%$keyword%");
+            })->get();
+
+        return response()->json([
+            'data' => $users,
+            'message' => 'success'
+        ], 200);
     }
 }

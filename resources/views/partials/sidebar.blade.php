@@ -50,7 +50,7 @@
                     <i class="icon icon-receipt s-18 text-primary"></i>My Request
                 </a>
             </li>
-            <li><a href="#">
+            <li><a href="{{ route('signature.index') }}">
                     <i class="icon icon-signing s-18 text-red"></i>Sign Request
                 </a>
             </li>

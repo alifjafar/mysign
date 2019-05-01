@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4 mx-md-auto">
                     <div class="text-center">
-                        <img src="{{ asset('img/icon/sydney-opera-house.png') }}" class="img-fluid"
+                        <img src="{{ asset('img/icon/icon1.png') }}" class="img-fluid"
                              style="max-width: 150px"
                              alt="Logo">
                         <h2 class="p-t-b-20 bolder">Buat akun baru</h2>
@@ -40,16 +40,6 @@
                         <div class="form-group has-icon"><i class="icon-user-secret"></i>
                             <input type="password" class="form-control form-control-lg"
                                    placeholder="Confirmation Password" name="password_confirmation" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="role" value="mahasiswa" id="student" required="required"
-                                       class="custom-control-input">
-                                <label for="student" class="custom-control-label">Saya Mahasiswa</label></div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="role" value="dosen" id="lecturer"
-                                       class="custom-control-input">
-                                <label for="lecturer" class="custom-control-label">Saya Dosen</label></div>
                         </div>
                         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Register">
                         <div class="modal-footer bg-transparent "><p class="text-sm">Sudah punya akun? </p><a

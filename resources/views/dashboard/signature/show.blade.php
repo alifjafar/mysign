@@ -11,8 +11,8 @@
                 </div>
                 <div class="col-md-3">
                     <span class="float-right">
-                        <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sign_request"><i
-                                class="icon icon-signing"></i> Sign Request</a>
+                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#sign_approve"><i
+                                class="icon icon-signing"></i> Approve Request</a>
                     </span>
                 </div>
             </div>
@@ -55,15 +55,19 @@
         </div>
     </div>
 
-    @component('components.modal', ['selector' => 'sign_request'])
+    @component('components.modal', ['selector' => 'sign_approve'])
         @slot('title')
             Sign Request
         @endslot
 
         @slot('content')
-            <form action="{{ route('my-request.store') }}" method="post" enctype="multipart/form-data">
+            {{--<form action="{{ route('signature.update', $file->users[0]->request[0]->id) }}" method="post"--}}
+                  {{--enctype="multipart/form-data">--}}
+                <form action="#" method="post"
+                      enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
+                    @method('put')
                     @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -74,15 +78,14 @@
                         </div>
                     @endif
                     <input type="hidden" name="file_id" value="{{ $file['id'] }}">
-                    <div class="form-group">
-                        <label for="recipient">Recipient</label>
-                        <select name="recipient_id" id="recipient" class="form-control"
-                                required></select>
+                    <div class="alert alert-info">
+                        Klik Approve Apablika Menyetujui bahwa dokumen ini di tanda tangani oleh anda
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Approve</button>
                 </div>
             </form>
         @endslot
@@ -133,31 +136,6 @@
     <script>
         $('<iframe src="' + `{{asset('js/pdfjs/web/viewer.html')}}?file={{ action('FileController@getDocument', $file['id']) }}`
             + '" style="width:100%; height:82vh;" frameborder="0" scrolling="no" id="displayPDF"></iframe>').appendTo('#pdfObject');
-    </script>
-
-    <script>
-        $('#recipient').select2({
-            placeholder: "Pilih Penerima",
-            ajax: {
-                url: '{{ route('users.ajax') }}',
-                data: function (params) {
-                    return {
-                        q: params.term,
-                    }
-                },
-                processResults: function (data) {
-                    return {
-                        results: data.data.map(function (item) {
-                            return {
-                                id: item.id,
-                                text: item.name + " (" + item.email + ")"
-                            }
-                        })
-                    }
-                }
-            },
-            cache: true
-        });
     </script>
 
 @endpush

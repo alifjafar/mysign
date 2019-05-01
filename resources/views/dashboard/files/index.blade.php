@@ -174,48 +174,54 @@
             let data = raw['details'];
             console.log(data);
             $('#contentCert').empty();
-            $('#contentCert').append(
-                '<div class="col-md-6">' +
-                '<dl class="list-information cf">' +
-                '<dd>Signature Field</dd>' +
-                '<dt>' + data['signature_field'] + '</dt>' +
-                '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Integrity</dd>' +
-                '<dt><strong class="text-success">' + data['integrity']['messages'] +
-                '</strong></dt></dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Name</dd>' +
-                '<dt>' + data['name'] + '</dt>' + '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Reason</dd>' + '<dt>' + data['reason'] +
-                '</dt>' +
-                '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Date</dd>' + '<dt>' + data['date'] + '</dt>' + '</dl>' + '</div>' +
-                '<div class="col-md-6">' +
-                '<dl class="list-information cf">' +
-                '<dd>Validity</dd>' +
-                '<dt>' + data['detail']['validity'] + '</dt>' +
-                '</dl>' + '<dl class="list-information cf">' +
-                '<dd>Subject</dd>' +
-                '<dt>' + JSON.stringify(data['detail']['subject']) + '</dt>' + '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Issuer</dd>' +
-                '<dt>' + JSON.stringify(data['detail']['issuer']) + '</dt>' + '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Public Key</dd>' +
-                '<dt>' + data['detail']['public_key'] + '</dt>' +
-                '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>Algorithm</dd>' +
-                '<dt>' + data['detail']['algorithm'] + '</dt>' + '</dl>' +
-                '<dl class="list-information cf">' +
-                '<dd>SHA-1 Fingerprint</dd>' +
-                '<dt>' + data['detail']['fingerprints'] + '</dt>' +
-                '</dl>' +
-                '</div>'
-            );
+            if (data['signature_field'] != null) {
+                $('#contentCert').append(
+                    '<div class="col-md-6">' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Signature Field</dd>' +
+                    '<dt>' + data['signature_field'] + '</dt>' +
+                    '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Integrity</dd>' +
+                    '<dt><strong class="text-success">' + data['integrity']['messages'] +
+                    '</strong></dt></dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Name</dd>' +
+                    '<dt>' + data['name'] + '</dt>' + '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Reason</dd>' + '<dt>' + data['reason'] +
+                    '</dt>' +
+                    '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Date</dd>' + '<dt>' + data['date'] + '</dt>' + '</dl>' + '</div>' +
+                    '<div class="col-md-6">' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Validity</dd>' +
+                    '<dt>' + data['detail']['validity'] + '</dt>' +
+                    '</dl>' + '<dl class="list-information cf">' +
+                    '<dd>Subject</dd>' +
+                    '<dt>' + JSON.stringify(data['detail']['subject']) + '</dt>' + '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Issuer</dd>' +
+                    '<dt>' + JSON.stringify(data['detail']['issuer']) + '</dt>' + '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Public Key</dd>' +
+                    '<dt>' + data['detail']['public_key'] + '</dt>' +
+                    '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>Algorithm</dd>' +
+                    '<dt>' + data['detail']['algorithm'] + '</dt>' + '</dl>' +
+                    '<dl class="list-information cf">' +
+                    '<dd>SHA-1 Fingerprint</dd>' +
+                    '<dt>' + data['detail']['fingerprints'] + '</dt>' +
+                    '</dl>' +
+                    '</div>'
+                );
+            } else {
+                $('#contentCert').append(
+                    '<div class="alert alert-danger col-md-12">' + data['messages'] + '</div>'
+                )
+            }
         });
     </script>
 

@@ -20,16 +20,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('try', 'SignatureController@setSign');
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'panel'], function () {
     Route::get('dashboard', 'DashboardController')->name('dashboard');
     Route::group(['middleware' => ['can:admin']], function () {
         Route::resource('users', 'UserController');
     });
+
+    Route::get('signatures/{file}/verify', 'SignatureController@setSign')->name('verify.sign');
     Route::resource('files', 'FileController');
     Route::resource('my-request', 'MyRequestController');
+    Route::resource('signature', 'SignatureController');
     Route::get('documents/pdf/{id}', 'FileController@getDocument');
+    Route::get('resources/users', 'UserController@ajaxSearch')->name('users.ajax');
     Route::group(['prefix' => 'user/profile'], function () {
         Route::get('/{username}', 'ProfileController@index')->name('profile');
         Route::get('/{username}/change_password', 'ProfileController@editPassword')->name('edit-password');

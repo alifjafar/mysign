@@ -35,6 +35,12 @@ class File extends Model
 
     public function getDetailsAttribute()
     {
-        return $this->getPDFDetails($this->attributes['filename'], $this->attributes['path'])['result'][0];
+        $res = $this->getPDFDetails($this->attributes['filename'], $this->attributes['path']);
+
+        if ($res['status'] != 'none') {
+            return $res['result'][0];
+        } else {
+            return $res;
+        }
     }
 }

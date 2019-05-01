@@ -24,6 +24,8 @@ class FileController extends Controller
             $files = User::with(['files'])->whereId(Auth::user()->id)->first()->files;
         }
 
+//        return $files;
+
         return view('dashboard.files.index', compact('files'));
     }
 

@@ -28,7 +28,8 @@ trait SignatureTrait
             'Date' => now()->format('l jS F Y h:i:s A'),
         ];
 
-        $pdf->setSignature($certificate, $certificate, 'simplesystem', '', 2, $info);
+        $pdf->setSignature($certificate, $certificate, 'simplesystem', '',
+            3, $info, 'A');
 
         for ($i = 1; $i <= $count; $i++) {
             $pageId = $pdf->importPage($i);
@@ -60,5 +61,32 @@ trait SignatureTrait
 
         $data = $response->getBody()->getContents();
         return json_decode($data, true);
+    }
+
+    public function digitalSignature($file, $user)
+    {
+        $pdf = new Fpdi();
+        $certificate = File::get(storage_path('app\credentials\tcpdf.crt'));
+        $count = $pdf->setSourceFile(storage_path('app') . '/' . $file['path'] . $file['filename']);
+
+        $info = [
+            'Name' => $user['name'],
+            'Reason' => 'Dokumen di approve oleh ' . $user['name'],
+            'Location' => 'Bandung',
+            'Date' => now()->format('l jS F Y h:i:s A'),
+        ];
+
+        $pdf->setSignature($certificate, $certificate, 'simplesystem', '', 2, $info);
+
+        for ($i = 1; $i <= $count; $i++) {
+            $pageId = $pdf->importPage($i);
+            $pdf->setPrintHeader(false);
+            $pdf->setPrintFooter(false);
+            $pdf->addPage();
+            $pdf->useTemplate($pageId);
+        }
+
+
+        $pdf->Output(storage_path('app') . '/' . $file['path'] . $file['filename'], 'F');
     }
 }

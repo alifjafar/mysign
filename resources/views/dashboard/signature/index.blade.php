@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card no-b my-3 shadow">
                     <div class="card-header white">
-                        <h6>My Request</h6>
+                        <h6>Sign Request</h6>
                     </div>
                     <div class="card-body">
                         {{--<div class="col-md-12 mb-4">--}}
@@ -26,7 +26,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($requesters as $item)
+                                @foreach($signRequests as $item)
                                     @php
                                         switch ($item['status'][0]['name']) {
                                             case 'pending' : {
@@ -55,7 +55,7 @@
                                             class="badge {{ $color }}">{{ ucwords($item['status'][0]['name']) }}</span>
                                     </td>
                                     <td>
-                                        <a href="{{ route('files.show', $item['file']['id']) }}"
+                                        <a href="{{ route('verify.sign', $item['file']['id']) }}"
                                            class="btn btn-xs btn-primary">
                                             <i class="icon icon-open_in_new"></i>Buka File
                                         </a>

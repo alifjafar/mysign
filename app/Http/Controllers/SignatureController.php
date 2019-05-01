@@ -2,44 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+use App\Requester;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use setasign\Fpdi\Tcpdf\Fpdi;
 
 class SignatureController extends Controller
 {
-    public function setSign(Request $request)
+
+    public function index()
     {
-        $pdf = new Fpdi();
-        $pageSignature = 1;
-        $certificate = File::get(storage_path('app\credentials\tcpdf.crt'));
-        $count = $pdf->setSourceFile(storage_path('app\pdf\secret.pdf'));
+        $signRequests = Requester::with(['status', 'owner', 'recipient'])
+            ->where('recipient_id', auth()->user()->id)->get();
 
-        $info = [
-            'Name' => 'Alif Jafar',
-            'Reason' => 'Saya telah menyutujui document ini',
-            'Location' => 'Bandung - Jawa Barat, Indonesia',
-            'Date' => now()->format('l jS F Y h:i:s A'),
-        ];
+        return view('dashboard.signature.index', compact('signRequests'));
+    }
 
-
-        $pdf->setSignature($certificate, $certificate, 'simplesystem', '', 2, $info);
-
-        for ($i = 1; $i <= $count; $i++) {
-            $pageId = $pdf->importPage($i);
-            $pdf->setPrintHeader(false);
-            $pdf->setPrintFooter(false);
-            $pdf->addPage();
-            $pdf->useTemplate($pageId);
-//            if ($i == $pageSignature) {
-//                $pdf->Image(storage_path('app/public/signature.png'), 170, 220, 15, 15, 'PNG');
-//            }
-        }
-//        $pdf->setSignatureAppearance(170, 220, 15, 15, $pageSignature);
+    public function setSign(File $file)
+    {
+        $file->load('users.request');
+        return view('dashboard.signature.show', compact('file'));
+    }
 
 
-        $pdf->Output(storage_path('app/pdf/') . 'sign_secret2.pdf', 'F');
+    public function update(Request $request, Requester $requester)
+    {
+        $requester = Requester::where('id', $requester->id)->first();
 
-        return "Berhasil";
+        DB::transaction(function () use ($requester) {
+            $requester->update([
+                'updated' => now()
+            ]);
+
+            Requester::create([
+                'requester_id' => $requester['id'],
+                'status' => 'signed'
+            ]);
+        });
+
+        redirect()->route('signature.index')->with(['success' => 'Berhasil Approve Document']);
     }
 }

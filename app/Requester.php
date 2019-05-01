@@ -15,10 +15,13 @@ class Requester extends Model
         'updated' => 'datetime'
     ];
 
+    public $timestamps = false;
+
 
     public function status()
     {
-        return $this->hasMany(RequesterStatus::class, 'requester_id');
+        return $this->hasMany(RequesterStatus::class, 'requester_id')
+            ->orderBy('created_at', 'desc');
     }
 
     public function owner()
@@ -29,6 +32,11 @@ class Requester extends Model
     public function recipient()
     {
         return $this->belongsTo(User::class, 'recipient_id');
+    }
+
+    public function file()
+    {
+        return $this->belongsTo(File::class,'file_id');
     }
 
 }
