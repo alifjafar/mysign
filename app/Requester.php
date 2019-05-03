@@ -24,6 +24,7 @@ class Requester extends Model
             ->orderBy('created_at', 'desc');
     }
 
+
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');

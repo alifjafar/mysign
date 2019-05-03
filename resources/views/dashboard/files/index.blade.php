@@ -128,8 +128,11 @@
             "pageLength": 10,
         });
 
-        @if(Session::has('success'))
+        @if(session()->has('success'))
         swal("Berhasil !", '{{ Session::get('success') }}', "success");
+        @endif
+        @if(session()->has('showModal'))
+        $('#show_details').modal('show');
         @endif
     </script>
 

@@ -18,8 +18,8 @@ class CreateRequestersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->char('file_id',32);
             $table->unsignedBigInteger('recipient_id');
-            $table->dateTime('requested');
-            $table->dateTime('updated');
+            $table->dateTime('requested')->nullable();
+            $table->dateTime('updated')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');

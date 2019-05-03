@@ -24,13 +24,12 @@ class FileController extends Controller
             $files = User::with(['files'])->whereId(Auth::user()->id)->first()->files;
         }
 
-//        return $files;
-
         return view('dashboard.files.index', compact('files'));
     }
 
     public function store(Request $request)
     {
+        Session::flash('showModal', 'Show Modal');
         $this->validate($request, [
             'file' => 'required|file|mimes:pdf'
         ]);
@@ -57,7 +56,7 @@ class FileController extends Controller
 
             $this->digitalSignatureUpload($uploadedFile, $user);
         });
-
+        Session::forget('showModal');
         return back()->with(['success' => 'Berhasil Upload File']);
     }
 
