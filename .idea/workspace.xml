@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6bbbc47d-b2a3-43d7-ba16-87a1d3e1b0f9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SignatureController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SignatureController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/SignatureTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/SignatureTrait.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/backend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/backend/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/files/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/files/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/files/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/files/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/signature/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/signature/show.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="6bbbc47d-b2a3-43d7-ba16-87a1d3e1b0f9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +15,7 @@
     <session id="-474367388">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="1" />
@@ -459,18 +450,17 @@
       <workItem from="1556727573840" duration="10144000" />
       <workItem from="1556769812551" duration="707000" />
       <workItem from="1556793430609" duration="4220000" />
-      <workItem from="1556875804718" duration="342000" />
+      <workItem from="1556875804718" duration="1076000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64863000" />
+    <option name="totallyTimeSpent" value="65597000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.225" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -485,7 +475,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24364407" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24364407" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
