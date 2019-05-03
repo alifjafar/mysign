@@ -98,11 +98,11 @@
 
         @slot('content')
             <div class="modal-body">
-                <div class="row">
+                <div class="row" id="contentCert">
                     <div class="col-md-12">
                         <div class="card panel-default">
                             <div class="card-body">
-                                <div class="row" id="contentCert">
+                                <div class="row">
 
                                 </div>
                             </div>
@@ -174,49 +174,51 @@
             let data = raw['details'];
             console.log(data);
             $('#contentCert').empty();
-            if (data['signature_field'] != null) {
-                $('#contentCert').append(
-                    '<div class="col-md-6">' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Signature Field</dd>' +
-                    '<dt>' + data['signature_field'] + '</dt>' +
-                    '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Integrity</dd>' +
-                    '<dt><strong class="text-success">' + data['integrity']['messages'] +
-                    '</strong></dt></dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Name</dd>' +
-                    '<dt>' + data['name'] + '</dt>' + '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Reason</dd>' + '<dt>' + data['reason'] +
-                    '</dt>' +
-                    '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Date</dd>' + '<dt>' + data['date'] + '</dt>' + '</dl>' + '</div>' +
-                    '<div class="col-md-6">' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Validity</dd>' +
-                    '<dt>' + data['detail']['validity'] + '</dt>' +
-                    '</dl>' + '<dl class="list-information cf">' +
-                    '<dd>Subject</dd>' +
-                    '<dt>' + JSON.stringify(data['detail']['subject']) + '</dt>' + '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Issuer</dd>' +
-                    '<dt>' + JSON.stringify(data['detail']['issuer']) + '</dt>' + '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Public Key</dd>' +
-                    '<dt>' + data['detail']['public_key'] + '</dt>' +
-                    '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>Algorithm</dd>' +
-                    '<dt>' + data['detail']['algorithm'] + '</dt>' + '</dl>' +
-                    '<dl class="list-information cf">' +
-                    '<dd>SHA-1 Fingerprint</dd>' +
-                    '<dt>' + data['detail']['fingerprints'] + '</dt>' +
-                    '</dl>' +
-                    '</div>'
-                );
+            if (data['status'] == "ok") {
+                $.each(data['result'], function (i, v) {
+                    $('#contentCert').append(
+                        '<div class="col-md-12 mb-3"> ' +
+                        '<div class="card panel-default">' +
+                        '<div class="card-body">' +
+                        '<div class="row">' +
+                        '<div class="col-md-6">' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Integrity</dd>' +
+                        '<dt><strong class="text-success">' + v['integrity']['messages'] +
+                        '</strong></dt></dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Name</dd>' +
+                        '<dt>' + v['name'] + '</dt>' + '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Reason</dd>' + '<dt>' + v['reason'] +
+                        '</dt>' +
+                        '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Date</dd>' + '<dt>' + v['date'] + '</dt>' + '</dl>' + '</div>' +
+                        '<div class="col-md-6">' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Validity</dd>' +
+                        '<dt>' + v['detail']['validity'] + '</dt>' +
+                        '</dl>' + '<dl class="list-information cf">' +
+                        '<dd>Subject</dd>' +
+                        '<dt>' + JSON.stringify(v['detail']['subject']) + '</dt>' + '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Issuer</dd>' +
+                        '<dt>' + JSON.stringify(v['detail']['issuer']) + '</dt>' + '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Public Key</dd>' +
+                        '<dt>' + v['detail']['public_key'] + '</dt>' +
+                        '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>Algorithm</dd>' +
+                        '<dt>' + v['detail']['algorithm'] + '</dt>' + '</dl>' +
+                        '<dl class="list-information cf">' +
+                        '<dd>SHA-1 Fingerprint</dd>' +
+                        '<dt>' + v['detail']['fingerprints'] + '</dt>' +
+                        '</dl>' +
+                        '</div> </div> </div> </div> </div>'
+                    );
+                })
             } else {
                 $('#contentCert').append(
                     '<div class="alert alert-danger col-md-12">' + data['messages'] + '</div>'

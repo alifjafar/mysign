@@ -28,24 +28,27 @@
                     <div class="card-header white">
                         <span class="card-title bold"><strong>Informasi</strong></span>
                     </div>
-                    <div class="card-body">
-                        @if($file['details']['signature_field'] ?? '')
-                            <dl>
-                                <dd>Integrity</dd>
-                                <dt>{{ $file['details']['integrity']['messages'] }}</dt>
-                            </dl>
-                            <dl>
-                                <dd>Name</dd>
-                                <dt>{{ $file['details']['name'] }}</dt>
-                            </dl>
-                            <dl>
-                                <dd>Reason</dd>
-                                <dt>{{ $file['details']['reason'] }}</dt>
-                            </dl>
-                            <dl>
-                                <dd>Date</dd>
-                                <dt>{{ $file['details']['date'] }}</dt>
-                            </dl>
+                    <div class="card-body scroll-box">
+                        @if($file['details']['result'] ?? '')
+                            @foreach($file['details']['result'] as $item)
+                                <dl>
+                                    <dd>Integrity</dd>
+                                    <dt>{{ $item['integrity']['messages'] }}</dt>
+                                </dl>
+                                <dl>
+                                    <dd>Name</dd>
+                                    <dt>{{ $item['name'] }}</dt>
+                                </dl>
+                                <dl>
+                                    <dd>Reason</dd>
+                                    <dt>{{ $item['reason'] }}</dt>
+                                </dl>
+                                <dl>
+                                    <dd>Date</dd>
+                                    <dt>{{ $item['date'] }}</dt>
+                                </dl>
+                                <hr>
+                            @endforeach
                         @else
                             <div class="alert alert-danger">{{ $file['details']['messages'] }}</div>
                         @endif

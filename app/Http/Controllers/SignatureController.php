@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\Requester;
+use App\RequesterStatus;
+use App\Traits\SignatureTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use setasign\Fpdi\Tcpdf\Fpdi;
 
 class SignatureController extends Controller
 {
+    use SignatureTrait;
 
     public function index()
     {
@@ -26,21 +29,25 @@ class SignatureController extends Controller
     }
 
 
-    public function update(Request $request, Requester $requester)
+    public function update(Request $request, $id)
     {
-        $requester = Requester::where('id', $requester->id)->first();
+        $requester = Requester::where('id', $id)->first();
 
         DB::transaction(function () use ($requester) {
             $requester->update([
                 'updated' => now()
             ]);
 
-            Requester::create([
+            RequesterStatus::create([
                 'requester_id' => $requester['id'],
-                'status' => 'signed'
+                'name' => 'signed'
             ]);
+
+            $file = File::where('id', $requester['file_id'])->first();
+
+            $this->digitalSignatureApprove($file, auth()->user());
         });
 
-        redirect()->route('signature.index')->with(['success' => 'Berhasil Approve Document']);
+        return redirect()->route('signature.index')->with(['success' => 'Berhasil Approve Document']);
     }
 }

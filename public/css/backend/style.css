@@ -26,7 +26,6 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-
 .activity-sailing:before {
     color: #03a9f4;
     background: #fff;
@@ -61,4 +60,10 @@ input::-webkit-inner-spin-button {
     width: 10px;
     font-family: paperIcons;
     font-size: 20px;
+}
+
+.scroll-box {
+    overflow-y: scroll;
+    height: 300px;
+    padding: 1rem
 }
