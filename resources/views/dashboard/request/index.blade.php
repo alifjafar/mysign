@@ -47,7 +47,7 @@
                                     <td>{{ $item['owner']['name'] }}</td>
                                     <td>{{ $item['recipient']['name'] }}</td>
                                     <td>Requester : {{ $item['requested'] }}
-                                        @if($item['upadated'] ?? '')
+                                        @if($item['updated'] ?? '')
                                             <br>Updated : {{ $item['updated'] }}
                                         @endif
                                     </td>
